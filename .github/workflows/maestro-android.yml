@@ -33,14 +33,22 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
           disable-animations: true
           script: |
-            curl -Ls https://get.maestro.mobile.dev | bash -s -- --version 2.4.0
+            set -euxo pipefail
+
+            curl -fsSL "https://get.maestro.mobile.dev" | bash
+
+            echo "HOME=$HOME"
+            ls -la "$HOME" || true
+            ls -la "$HOME/.maestro" || true
+            ls -la "$HOME/.maestro/bin" || true
 
             export PATH="$HOME/.maestro/bin:$PATH"
 
             adb wait-for-device
             adb shell input keyevent 82
-
             adb install -r apk/ApiDemos-debug.apk
 
-            $HOME/.maestro/bin/maestro --version
-            $HOME/.maestro/bin/maestro test tests/first-test.yaml
+            which maestro || true
+            maestro --version
+
+            maestro test tests/first-test.yaml
