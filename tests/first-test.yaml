@@ -1,0 +1,10 @@
+appId: io.appium.android.apis
+env:
+  TEST_TEXT: "Maestro Test"
+
+---
+- launchApp:
+    clearState: true
+
+- runFlow: go-to-light-theme.yaml
+- runFlow: input-text-flow.yaml

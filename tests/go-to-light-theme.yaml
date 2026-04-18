@@ -1,0 +1,6 @@
+appId: io.appium.android.apis
+---
+- assertVisible: "API Demos"
+- tapOn: "Views"
+- tapOn: "Controls"
+- tapOn: "1. Light Theme"
